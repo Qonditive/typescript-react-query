@@ -36,7 +36,7 @@ class CustomMapperFetcher {
         const implHookOuter = this._isReactHook ? `const query = ${typedFetcher}(${documentVariableName})` : '';
         const impl = this._isReactHook
             ? `(metaData) => query({...variables, ...(metaData.pageParam ?? {})}, metaData)`
-            : `(metaData) => ${typedFetcher}(${documentVariableName}, {...variables, ...(metaData.pageParam ?? {})})()`;
+            : `(metaData) => ${typedFetcher}(${documentVariableName}, {...variables, ...(metaData.pageParam ?? {})}, metaData)()`;
         return `export const useInfinite${operationName} = <
       TData = ${operationResultType},
       TError = ${this.visitor.config.errorType}
